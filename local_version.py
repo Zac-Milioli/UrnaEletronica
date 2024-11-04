@@ -3,8 +3,13 @@ Versão que executa a urna localmente
 """
 from os import system
 from src.models.election import Election
+from src.models.candidate import Candidate
 
-election = Election()
+election = Election({
+            "1": Candidate(name="Angela Pepino", code='1', party="PMDB"),
+            "2": Candidate(name="Gean da Silva", code='2', party='PT'),
+            "3": Candidate(name='Cesar Souza Neto', code='3', party="DEM")
+            })
 WINNER = None
 
 while election.is_active:

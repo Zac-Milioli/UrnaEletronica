@@ -4,20 +4,17 @@
 É o ponto de partida da urna
 """
 from fastapi import FastAPI
-# from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 from src.models.election import Election
+from src.models.candidate import Candidate
 
 app = FastAPI()
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=["*"],
-#     allow_credentials=True,
-#     allow_methods=["GET", "POST"],
-#     allow_headers=["*"]
-# )
 
-election = Election()
+election = Election({
+            "1": Candidate(name="Angela Pepino", code='1', party="PMDB"),
+            "2": Candidate(name="Gean da Silva", code='2', party='PT'),
+            "3": Candidate(name='Cesar Souza Neto', code='3', party="DEM")
+            })
 
 @app.post("/api/vote/{code}")
 async def vote(code: str) -> str:

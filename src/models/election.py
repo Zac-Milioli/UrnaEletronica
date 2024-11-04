@@ -14,15 +14,11 @@ class Election:
     candidates: dict
     ```
     """
-    def __init__(self):
+    def __init__(self, candidates: dict = None):
         self.is_active = True
-        self.candidates: dict = {
-            "1": Candidate(name="Angela Pepino", code='1', party="PMDB"),
-            "2": Candidate(name="Gean da Silva", code='2', party='PT'),
-            "3": Candidate(name='Cesar Souza Neto', code='3', party="DEM"),
-            "n": Candidate(name="Voto Nulo", code='n'),
-            "b": Candidate(name="Voto em Branco", code='b')
-        }
+        self.candidates: dict = candidates
+        self.candidates['n'] = Candidate(name="Voto Nulo", code='n')
+        self.candidates['b'] = Candidate(name="Voto em Branco", code='b')
 
     @property
     def most_voted(self) -> Candidate | list[Candidate]:
